@@ -1,8 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import math
-import imblearn
-from imblearn import under_sampling, over_sampling
-from imblearn.over_sampling import SMOTE
 import pandas as pd
 
 # All sklearn Transforms must have the `transform` and `fit` methods
@@ -18,16 +15,6 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
-    
-class BalancearClasses(object):
-    def __init__(self):
-        pass
-
-    def fit(self, X, y):
-        X_resampled, y_resampled = SMOTE(random_state=337).fit_resample(X, y)
-        X_resampled = pd.DataFrame(X_resampled, columns=X.columns)
-        return X_resampled, y_resampled
-   
 
 class RemoverNotasMaioresQue10(BaseEstimator, TransformerMixin):
     def __init__(self):
