@@ -99,10 +99,6 @@ class SmoteBalancear(object):
         X_resampled = pd.DataFrame(X_resampled, columns=X.columns)
         return X_resampled, y_resampled
     
-    def transform(self, X):
-        #adiciona coluna de medias relacionadas
-        df = X.copy()
-        return df
     
 class NotasMaiores(BaseEstimator, TransformerMixin):
     def __init__(self):
