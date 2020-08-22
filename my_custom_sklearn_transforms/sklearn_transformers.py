@@ -16,25 +16,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
 
-class NotasMaiores(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        pass
-    
-    def fit(self, X, y=None):
-        return self
-    
-    def transform(self, X):
-        # Primeiro realizamos a cópia do dataframe 'X' de entrada
-        df_data_2 = X.copy()
-        #setar nota 5 para notas maiores que 10    
-        #d.loc[d.sales == 12, 'sales'] = 99
-        
-        df_data_2.loc[df_data_2.NOTA_GO > 10, 'NOTA_GO'] = 5 
-        df_data_2.loc[df_data_2.NOTA_DE > 10, 'NOTA_DE'] = 5
-        df_data_2.loc[df_data_2.NOTA_MF > 10, 'NOTA_MF'] = 5
-        df_data_2.loc[df_data_2.NOTA_EM > 10, 'NOTA_EM'] = 5
-        return df_data_2
-    
+   
 class PreencherDados(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
