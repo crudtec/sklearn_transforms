@@ -100,3 +100,20 @@ class PreencherDados(BaseEstimator, TransformerMixin):
         Media = DS['FALTAS'].mean()
         df_data_3.update(df_data_3['FALTAS'].fillna(Media))       
         return df_data_3 
+    
+class MediasRelacionadas(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        #adiciona coluna de medias relacionadas
+        df = X.copy()
+        df['REPROVACOES_H'] = df['REPROVACOES_DE'] + df['REPROVACOES_EM']
+        df['REPROVACOES_E'] = df['REPROVACOES_MF'] + df['REPROVACOES_GO']
+        df['MEDIA_H'] = (df['NOTA_DE']+df['NOTA_EM'])/2
+        df['MEDIA_E'] = (df['NOTA_MF']+df['NOTA_GO'])/2
+
+        return df
