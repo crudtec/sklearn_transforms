@@ -16,7 +16,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
 
-class NotasMaioresQue10(BaseEstimator, TransformerMixin):
+class NotasMaiores(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
     
