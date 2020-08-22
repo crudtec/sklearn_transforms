@@ -1,6 +1,8 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import math
 import pandas as pd
+import imblearn
+from imblearn.over_sampling import SMOTE
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -87,3 +89,12 @@ class MediasRelacionadas(BaseEstimator, TransformerMixin):
         df['MEDIA_E'] = (df['NOTA_MF']+df['NOTA_GO'])/2
 
         return df
+
+class SmoteBalancear(object):
+    def __init__(self):
+        pass
+
+    def fit(self, X, y):
+        X_resampled, y_resampled = SMOTE().fit_resample(X, y)
+        X_resampled = pd.DataFrame(X_resampled, columns=X.columns)
+        return X_resampled, y_resampled    
